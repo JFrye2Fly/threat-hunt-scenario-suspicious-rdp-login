@@ -28,8 +28,8 @@ Exfiltrated the file using a cloud sync folder (e.g., OneDrive) or sent via emai
 
 ---------------
 
-### 📊 Tables Used to Detect IoCs
-## 🔍 Table Name	📝 Description
+## 📊 Tables Used to Detect IoCs
+### 🔍 Table Name	📝 Description
 DeviceProcessEvents	Link
 Detects PowerShell usage with suspicious flags and Mimikatz indicators.
 DeviceFileEvents	Link

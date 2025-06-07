@@ -1,14 +1,16 @@
-Threat Event (Unauthorized Credential Dumping)
+🔐 Threat Event: Unauthorized Credential Dumping
 Mimikatz Credential Dumping Executed by Insider
+📌 Reason for the Hunt
+Unusual system behavior was reported: the Security Operations Center (SOC) observed multiple alerts related to suspicious access of LSASS memory.
 
-Reason for the Hunt
-Unusual system behavior was reported: the Security Operations Center (SOC) observed multiple alerts related to suspicious access to LSASS memory. In parallel, recent cybersecurity reports have highlighted a surge in the use of Mimikatz during the post-exploitation phase of ransomware campaigns.
-In response, management has issued a directive to proactively hunt for signs of credential dumping across all corporate endpoints.
+In parallel, cybersecurity intelligence reports have highlighted a rise in the use of Mimikatz in the post-exploitation phase of ransomware campaigns.
 
-Steps the "Bad Actor" Took to Create Logs and IoCs
-Transferred Invoke-Mimikatz.ps1 to the desktop of the target system.
+🔧 As a result, management has directed a proactive threat hunt across all endpoints for credential dumping activity.
 
-Executed the script using PowerShell with execution policy bypass:
+🧰 Steps the "Bad Actor" Took to Create Logs and IoCs
+Transferred the file Invoke-Mimikatz.ps1 to the desktop of the victim system.
+
+Executed the script via PowerShell using an execution policy bypass:
 
 powershell
 Copy
@@ -20,24 +22,24 @@ powershell
 Copy
 Edit
 Invoke-Mimikatz -Command '"sekurlsa::logonpasswords"'
-Stored the dumped credentials in:
+Stored the output in:
 
-vbnet
+plaintext
 Copy
 Edit
 C:\Users\Public\dumped-creds.txt
-Exfiltrated the file using a cloud sync folder (e.g., OneDrive) or by sending it via email.
+Exfiltrated the file using a cloud sync folder (e.g., OneDrive) or sent via email.
 
-Tables Used to Detect IoCs
-Name	Description
+📊 Tables Used to Detect IoCs
+🔍 Table Name	📝 Description
 DeviceProcessEvents	Link
-Used to detect PowerShell usage, suspicious command-line flags, and Mimikatz indicators.
+Detects PowerShell usage with suspicious flags and Mimikatz indicators.
 DeviceFileEvents	Link
-Used to detect script transfer, creation of the output file, or interaction with sensitive paths.
+Detects script placement, file creation, and output dumps.
 DeviceNetworkEvents	Link
-Used to check for exfiltration attempts to external services or sync clients.
+Detects potential exfiltration via cloud or network activity.
 
-Related Queries
+🧠 Related KQL Queries
 kql
 Copy
 Edit
@@ -71,17 +73,3 @@ DeviceFileEvents
 | where FolderPath has "OneDrive"
 | where FileName contains "dumped-creds"
 | project Timestamp, DeviceName, FileName, FolderPath, ActionType
-Created By
-Author Name: ChatGPT (based on real-world TTPs)
-
-Author Contact: https://openai.com
-
-Date: June 6, 2025
-
-Validated By
-Reviewer Name: [To be filled in]
-
-Reviewer Contact: [To be filled in]
-
-Validation Date: [To be filled in]
-

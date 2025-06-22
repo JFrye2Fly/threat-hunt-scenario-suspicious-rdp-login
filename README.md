@@ -45,7 +45,7 @@ DeviceLogonEvents
 
 ---
 
-### 2. Searched the `DeviceNetworkEvents` Table for foreign or know Suspicous IP ranges
+### 2. Searched the `DeviceNetworkEvents` Table for foreign or knowm Suspicous IP ranges
 
 Searched for Device Network events that used RemotePort 3389 and that omitted IP ranges that start with `10.` or `192.168` as these are good IP ranges. This search returned no results.
 
@@ -62,6 +62,23 @@ DeviceNetworkEvents
 <img width="1095" alt="Screen Shot 2025-06-22 at 8 47 25 AM" src="https://github.com/user-attachments/assets/eebcf4de-e475-4b03-806f-a20b0b7daacc" />
 
 ---
+
+### 3. Searched the `DeviceNetworkEvents` Table for LogonSuccess events to the workstation "JeffreyWindows1"
+
+Searched for Device Network events that resulted in LogonSuccess to this workstation.
+
+**Query used to locate events:**
+
+```kql
+DeviceLogonEvents
+| where DeviceName == "jeffreywindows1" 
+| where ActionType == "LogonSuccess" 
+| order by Timestamp desc
+| where RemoteIP != "" and RemoteIP !in ("10.0.8.8", "10.0.8.6", "10.0.8.7", "10.0.8.5")
+| project Timestamp, DeviceName, AccountName, RemoteIP, LogonType
+```
+
+<img width="1329" alt="Screen Shot 2025-06-22 at 8 51 22 AM" src="https://github.com/user-attachments/assets/4c77de51-8d4e-45f8-b173-c059394ca7ab" />
 
 
 ## Chronological Event Timeline 

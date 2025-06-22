@@ -1,4 +1,4 @@
-# threat-hunt-scenario-mimikatz
+# threat-hunt-scenario-suspicious-rdp-login
 
 # Official [Cyber Range](http://joshmadakor.tech/cyber-range) Project
 

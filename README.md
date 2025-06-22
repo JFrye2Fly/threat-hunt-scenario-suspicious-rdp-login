@@ -29,22 +29,20 @@ In response to a recent CISA advisory on brute-force RDP attacks, management has
 
 ## Steps Taken
 
-### 1. Searched the `DeviceFileEvents` Table
+### 1. Searched the `DeviceLogonEvents` Table
 
-Searched for any file that had the string "tor" in it and discovered what looks like the user "employee" downloaded a TOR installer, did something that resulted in many TOR-related files being copied to the desktop, and the creation of a file called `tor-shopping-list.txt` on the desktop at `2024-11-08T22:27:19.7259964Z`. These events began at `2024-11-08T22:14:48.6065231Z`.
+Searched for any LogonEvents that were of the Remoteinteractive type, meaning someone logged in away from the company network. All of the logs discovered showed no suspicious Remote IP addresses.
 
 **Query used to locate events:**
 
 ```kql
-DeviceFileEvents  
-| where DeviceName == "threat-hunt-lab"  
-| where InitiatingProcessAccountName == "employee"  
-| where FileName contains "tor"  
-| where Timestamp >= datetime(2024-11-08T22:14:48.6065231Z)  
-| order by Timestamp desc  
-| project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, Account = InitiatingProcessAccountName
+DeviceLogonEvents
+| where DeviceName == "jeffreywindows1"
+| where LogonType == "RemoteInteractive"
+| project Timestamp, DeviceName, AccountName, RemoteIP, LogonType
 ```
-<img width="1212" alt="image" src="https://github.com/user-attachments/assets/71402e84-8767-44f8-908c-1805be31122d">
+<img width="1277" alt="Screen Shot 2025-06-22 at 8 43 15 AM" src="https://github.com/user-attachments/assets/27b4b698-f70a-4d1c-8bd0-ac44f43f8dea" />
+
 
 ---
 

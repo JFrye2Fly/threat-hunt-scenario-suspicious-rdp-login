@@ -43,6 +43,23 @@ DeviceLogonEvents
 ```
 <img width="1277" alt="Screen Shot 2025-06-22 at 8 43 15 AM" src="https://github.com/user-attachments/assets/27b4b698-f70a-4d1c-8bd0-ac44f43f8dea" />
 
+---
+
+### 2. Searched the `DeviceNetworkEvents` Table for foreign or know Suspicous IP ranges
+
+Searched for Device Network events that used RemotePort 3389 and that omitted IP ranges that start with `10.` or `192.168` as these are good IP ranges. This search returned no results.
+
+**Query used to locate events:**
+
+```kql
+DeviceNetworkEvents
+| where RemotePort == 3389
+| where RemoteIP !startswith "192.168." and RemoteIP !startswith "10."
+| where DeviceName == "jeffreywindows1"
+| project Timestamp, ActionType, DeviceName, InitiatingProcessAccountName, RemoteIP, RemotePort```
+```
+
+<img width="1095" alt="Screen Shot 2025-06-22 at 8 47 25 AM" src="https://github.com/user-attachments/assets/eebcf4de-e475-4b03-806f-a20b0b7daacc" />
 
 ---
 

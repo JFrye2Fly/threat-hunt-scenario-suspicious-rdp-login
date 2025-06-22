@@ -49,7 +49,20 @@ In response to a recent **CISA advisory on brute-force RDP attacks**, management
 
 ### 🔎 Detect Remote Logins (RDP: LogonType == 10)
 ```kql
+
 DeviceLogonEvents
-| where LogonType == 10
-| where RemoteIP != "" and RemoteIP !in ("known-corporate-IPs", "VPN-gateway-IP")
+| where DeviceName == "jeffreywindows1"
+| where LogonType == "RemoteInteractive"
 | project Timestamp, DeviceName, AccountName, RemoteIP, LogonType
+
+DeviceLogonEvents
+| where DeviceName == "jeffreywindows1"
+| where LogonType == "RemoteInteractive"
+| where RemoteIP != "" and RemoteIP !in ("10.0.8.8", "10.0.8.6")
+| project Timestamp, DeviceName, AccountName, RemoteIP, LogonType
+
+DeviceProcessEvents
+| where DeviceName == "jeffreywindows1"
+| where FileName has_any ("mimikatz.exe", "SharpHound.exe", "netcat.exe", "psexec.exe", "powershell.exe")
+| project Timestamp, DeviceName, ActionType, FileName, ProcessCommandLine, InitiatingProcessCommandLine, InitiatingProcessFolderPath
+

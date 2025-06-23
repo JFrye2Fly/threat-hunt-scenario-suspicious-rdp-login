@@ -44,7 +44,7 @@ DeviceLogonEvents
 
 ---
 
-### 2. Searched the `DeviceNetworkEvents` Table for foreign or knowm Suspicous IP ranges
+### 2. Searched the `DeviceNetworkEvents` Table for foreign or known Suspicous IP ranges
 
 Searched for Device Network events that used RemotePort 3389 and that omitted IP ranges that start with `10.` or `192.168` as these are good IP ranges. This search returned no results.
 

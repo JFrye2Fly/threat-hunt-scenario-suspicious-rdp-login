@@ -18,7 +18,7 @@ Security Operations detected multiple successful Remote Desktop Protocol (RDP) l
 
 In response to a recent CISA advisory on brute-force RDP attacks, management has directed a proactive threat hunt to identify signs of RDP misuse or unauthorized access.
 
-### High-Level TOR-Related IoC Discovery Plan
+### High-Level Suspicious RDP Login IoC Discovery Plan
 
 - **Check `DeviceLogonEvents`** for any signs of successful RDP logins from suspicious locations.
 - **Check `DeviceFileEvents`** for any commonly used files such as `anydesk`, `7zip` or `mimikatz` file events.

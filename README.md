@@ -80,6 +80,27 @@ DeviceLogonEvents
 
 <img width="1329" alt="Screen Shot 2025-06-22 at 8 51 22 AM" src="https://github.com/user-attachments/assets/4c77de51-8d4e-45f8-b173-c059394ca7ab" />
 
+---
+
+### 4. Searched the `DeviceFileEvents` Table for Different Common files that can be used maliciously.
+
+Searched for Device File Events for any of these common files: "mimikatz.exe", "winPE.zip", ".7z", "procdump.exe", "anydesk.exe"
+
+**Query used to locate events:**
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "jeffreywindows1"
+| where FileName has_any ("mimikatz.exe", "SharpHound.exe", "netcat.exe", "psexec.exe", "powershell.exe")
+| project Timestamp, ProcessCommandLine, InitiatingProcessCommandLine, InitiatingProcessFolderPath
+```
+
+This query showed that several different files were downloaded by the malicious user, probably to steal credentials (mimikatz) and reconaissance (anydesk).
+
+<img width="1311" alt="Screen Shot 2025-06-23 at 6 33 32 AM" src="https://github.com/user-attachments/assets/af618f9d-fbab-4174-8301-1dd1de799638" />
+---
+
+
 
 ## Chronological Event Timeline 
 

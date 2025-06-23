@@ -121,23 +121,27 @@ DeviceProcessEvents
 - **Timestamp:** `2025-06-12T09:57:54.4183306Z`
 - **Event:** A user logged onto the "jeffreywindows1" workstation using the correct credentials for the user "fryecyber12345!" from the IP address `50.173.17.242`
 
-### 2. Successful Suspicious RDP Logon 
+---
 
-- **Timestamp:** `2025-06-12T09:57:54.4183306Z`
-- **Event:** A user logged onto the "jeffreywindows1" workstation using the correct credentials for the user "fryecyber12345!" from the IP address 50.173.17.242
+### 2. Anydesk.exe file downloaded 
+
+- **Timestamp:** `2025-06-12T10:05:38.3669674Z`
+- **Event:** The suspicious user downloaded the file "Anydesk.exe" which can be used for remote control execution or credential theft. The file path is obviously suspicious as it is stored under the "SuspicousToolsLab" folder on the C drive. 
 - - **Action:** File download detected.
-- **File Path:** `C:\Users\employee\Downloads\tor-browser-windows-x86_64-portable-14.0.1.exe`
+- **File Path:** `C:\SuspiciousToolsLab\AnyDesk.exe`
 
 ---
 
+
+
 ## Summary
 
-The...
+The suspicious user sucessfully logged in and downloaded `Anydesk.exe` but never launched it. It appears this user was waiting for the right time to launch the program and most likely use it as a persistence mechanicsm. 
 
 ---
 
 ## Response Taken
 
-TOR usage was confirmed on the endpoint `threat-hunt-lab` by the user `employee`. The device was isolated, and the user's direct manager was notified.
+The program `anydesk.exe` was downloaded by the user `fryecyber12345!` on the workstation `jeffreywindows1`. Someone obtained this users credentials in an unkown fashion as the IP address was not in our corporate range and the real user, Jeffrey Frye, is trustworthy and denies downloading that file.  The device was isolated, and the user's direct manager was notified.
 
 ---

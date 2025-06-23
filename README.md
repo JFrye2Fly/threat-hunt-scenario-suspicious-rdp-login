@@ -64,7 +64,7 @@ DeviceNetworkEvents
 
 ### 3. Searched the `DeviceNetworkEvents` Table for LogonSuccess events to the workstation "JeffreyWindows1"
 
-Searched for Device Network events that resulted in LogonSuccess to this workstation.
+Searched for Device Network events that resulted in LogonSuccess to this workstation. The IP address `50.173.17.242` is very suspicious and outside of the corporate IP range.
 
 **Query used to locate events:**
 

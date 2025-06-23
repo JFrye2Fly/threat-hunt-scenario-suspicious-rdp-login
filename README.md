@@ -1,8 +1,7 @@
 # threat-hunt-scenario-suspicious-rdp-login
 
 # Official [Cyber Range](http://joshmadakor.tech/cyber-range) Project
-
-<img width="400" src="https://github.com/user-attachments/assets/44bac428-01bb-4fe9-9d85-96cba7698bee" alt="Tor Logo with the onion and a crosshair on it"/>
+<img width="420" alt="Screen Shot 2025-06-23 at 6 48 22 AM" src="https://github.com/user-attachments/assets/82097391-d0fa-4572-8eb9-b10ec41fc2b2" />
 
 # Threat Hunt Report: Unauthorized TOR Usage
 - [Scenario Creation](https://github.com/joshmadakor0/threat-hunting-scenario-tor/blob/main/threat-hunting-scenario-tor-event-creation.md)

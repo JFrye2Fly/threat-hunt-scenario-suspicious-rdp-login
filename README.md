@@ -98,6 +98,19 @@ DeviceProcessEvents
 This query showed that several different files were downloaded by the malicious user, probably to steal credentials (mimikatz) and reconaissance (anydesk).
 
 <img width="1311" alt="Screen Shot 2025-06-23 at 6 33 32 AM" src="https://github.com/user-attachments/assets/af618f9d-fbab-4174-8301-1dd1de799638" />
+
+---
+
+### 5. Searched the `DeviceProcessEvents` Table to see if 7Zip, Procdump or AnyDesk were launched after being downloaded.
+
+Verified this by inspecting the ProcessCommandLine column, found no evidence of any of these programs being launched. 
+
+```kql
+DeviceProcessEvents
+| where DeviceName == "jeffreywindows1" 
+| project Timestamp, ProcessCommandLine
+```
+
 ---
 
 
